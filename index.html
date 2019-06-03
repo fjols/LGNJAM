@@ -22,19 +22,40 @@
    };
 
    var game = new Phaser.Game(config);
+   var emitter;
+   var emitterTwo;
 
    function preload () // preload
    {
+       this.load.image('particle', 'assets/textures/particle.png');
        this.load.image('gds', 'assets/textures/gds.png');
    }
 
    function create ()
    {
-       var image = this.add.image(400, 300, 'gds');
-       this.input.on('pointerdown', function(pointer){
-         image.setTint(0xff00ff, 0xffff00, 0x0000ff, 0xff0000);
+       var particles = this.add.particles('particle'); // Particle to use in the emitter.
+       emitter = particles.createEmitter({ // The emitter.
+         speed: 50, // Speed of the particles.
+         scale: {start: 1.5, end: 0}, // How big the particles will be at start and what theyll shrink to.
+         blendMode: 'ADD', // Blend mode to use.
+         tint: 0x0000ff, // Tint to use.
+         gravityY: 300
        });
+
+       emitterTwo = particles.createEmitter({ // The emitter.
+         speed: 50, // Speed of the particles.
+         scale: {start: 1.5, end: 0}, // How big the particles will be at start and what theyll shrink to.
+         blendMode: 'ADD', // Blend mode to use.
+         tint: 0xff8800, // Tint to use.
+         gravityY: 300
+       });
+
+       emitter.setPosition(400, 300); // Position of the emitter.
+       emitterTwo.setPosition(400, 300); // Position of the emitter.
+
+
    }
+
    </script>
   </body>
 </html>
