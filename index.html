@@ -40,6 +40,7 @@
 
     function preload () // preload
     {
+        this.load.audio('theme', ['assets/audio/SoundtrackSpace.wav']);
         this.load.image('particle', 'assets/textures/particle.png'); // Preloading the particle for the emitters.
         this.load.image('rocket', 'assets/textures/rocket.png'); // Preloading the rocket.
         this.load.image('space', 'assets/textures/space.png'); // Space background.
@@ -47,6 +48,11 @@
 
     function create ()
     {
+      var audio = this.sound.add('theme'); // Add the music into the game.
+      audio.setVolume(0.05); // Set the volume.
+      audio.setLoop(true); // Loop the music.
+      audio.play(); // Play the music.
+
        // Background to use. Using a tile sprite.
        background = this.add.tileSprite(0, 0, this.sys.game.canvas.width, this.sys.game.canvas.height, 'space').setOrigin(0, 0);
 
@@ -109,6 +115,8 @@
       var finalText = this.add.text(200, 600, 'Your score was: ' + score); // Display the players final score when the timer is complete.
       timerText.setTint(0xff0000, 0x0000ff, 0xffff00, 0xff00ff); // Set the text tint
     }
+
+
     </script>
   </body>
 </html>
