@@ -5,86 +5,86 @@
   </head>
   <body>
     <script>
-   var config = {
-       type: Phaser.AUTO,
-       width: 800,
-       height: 600,
-       physics: {
-           default: 'arcade',
-           arcade: {
-               gravity: { y: 0 }
-           }
-       },
-       scene: {
-           preload: preload,
-           create: create,
-           update: update
-       }
-   };
+    var config = {
+        type: Phaser.AUTO,
+        width: 800,
+        height: 600,
+        physics: {
+            default: 'arcade',
+            arcade: {
+                gravity: { y: 0 }
+            }
+        },
+        scene: {
+            preload: preload,
+            create: create,
+            update: update
+        }
+    };
 
-   var game = new Phaser.Game(config);
-   var emitter; // First Emitter. - Emitters will overlay each other giving a cool effect.
-   var emitterTwo; // Second Emitter.
-   var rocket; // Player.
-   var background; // Background tiles.
-   var score = 0; // Score.
-   var points = 1; // Score to increase by each button press.
+    var game = new Phaser.Game(config);
+    var emitter; // First Emitter. - Emitters will overlay each other giving a cool effect.
+    var emitterTwo; // Second Emitter.
+    var rocket; // Player.
+    var background; // Background tiles.
+    var score = 0; // Score.
+    var points = 1; // Score to increase by each button press.
 
-   function preload () // preload
-   {
-       this.load.image('particle', 'assets/textures/particle.png'); // Preloading the particle for the emitters.
-       this.load.image('rocket', 'assets/textures/rocket.png'); // Preloading the rocket.
-       this.load.image('space', 'assets/textures/space.png'); // Space background.
-   }
+    function preload () // preload
+    {
+        this.load.image('particle', 'assets/textures/particle.png'); // Preloading the particle for the emitters.
+        this.load.image('rocket', 'assets/textures/rocket.png'); // Preloading the rocket.
+        this.load.image('space', 'assets/textures/space.png'); // Space background.
+    }
 
-   function create ()
-   {
-      background = this.add.tileSprite(400,300,800,600, 'space'); // Background to use. Using a tile sprite.
-      var textOne = this.add.text(25, 25, 'A space game'); // Some Text.
-      var scoreText = this.add.text(100, 100, 'Score: 0'); // Score text - will be updated.
-      textOne.setTint(0xff00ff, 0xffff00, 0x0000ff, 0xff0000); // Tint.
-      scoreText.setTint(0xff0000, 0x0000ff, 0xffff00, 0xff00ff); // Tint.
-      this.physics.world.setBoundsCollision(true, true, true, true); // World collisions.
-      rocket = this.physics.add.sprite(400, 300, 'rocket'); // Rocket sprite.
-      rocket.scaleX = 2; // Make the rocket bigger.
-      rocket.scaleY = 2; // Make the rocket bigger.
-      rocket.setCollideWorldBounds(true); // The world collision bounds.
+    function create ()
+    {
+       background = this.add.tileSprite(400,300,800,600, 'space'); // Background to use. Using a tile sprite.
+       var textOne = this.add.text(25, 25, 'A space game'); // Some Text.
+       var scoreText = this.add.text(100, 100, 'Score: 0'); // Score text - will be updated.
+       textOne.setTint(0xff00ff, 0xffff00, 0x0000ff, 0xff0000); // Tint.
+       scoreText.setTint(0xff0000, 0x0000ff, 0xffff00, 0xff00ff); // Tint.
+       this.physics.world.setBoundsCollision(true, true, true, true); // World collisions.
 
 
-       var particles = this.add.particles('particle'); // Particle to use in the emitter.
-       emitter = particles.createEmitter({ // The emitter.
-         speed: 75, // Speed of the particles.
-         scale: {start: 1.5, end: 0}, // How big the particles will be at start and what theyll shrink to.
-         blendMode: 'ADD', // Blend mode to use.
-         tint: 0x0000ff, // Tint to use.
-         gravityY: 400 // Gravity of the emitter particles on the Y axis.
-       });
+        var particles = this.add.particles('particle'); // Particle to use in the emitter.
+        emitter = particles.createEmitter({ // The emitter.
+          speed: 75, // Speed of the particles.
+          scale: {start: 1.5, end: 0}, // How big the particles will be at start and what theyll shrink to.
+          blendMode: 'ADD', // Blend mode to use.
+          tint: 0x0000ff, // Tint to use.
+          gravityY: 400 // Gravity of the emitter particles on the Y axis.
+        });
 
-       emitterTwo = particles.createEmitter({ // The emitter.
-         speed: 75, // Speed of the particles.
-         scale: {start: 1.5, end: 0}, // How big the particles will be at start and what theyll shrink to.
-         blendMode: 'ADD', // Blend mode to use.
-         tint: 0xff8800, // Tint to use.
-         gravityY: 400 // Gravity of the emitter particles on the Y axis.
-       });
+        emitterTwo = particles.createEmitter({ // The emitter.
+          speed: 75, // Speed of the particles.
+          scale: {start: 1.5, end: 0}, // How big the particles will be at start and what theyll shrink to.
+          blendMode: 'ADD', // Blend mode to use.
+          tint: 0xff8800, // Tint to use.
+          gravityY: 400 // Gravity of the emitter particles on the Y axis.
+        });
 
-       rocket.setOrigin(0.5, 1); // Origin of the rocket sprite. This for the positioning of the emitters.
-       emitter.startFollow(rocket); // Emitter should follow the rocket.
-       emitterTwo.startFollow(rocket); // Emitter should follow the rocket.
+        rocket = this.physics.add.sprite(400, 300, 'rocket'); // Rocket sprite.
+        rocket.scaleX = 2; // Make the rocket bigger.
+        rocket.scaleY = 2; // Make the rocket bigger.
+        rocket.setCollideWorldBounds(true); // The world collision bounds.
 
-       this.input.on('pointerdown', function(pointer){ // When the mouse button is pressed.
-         score += points; // Increase the score.
-         scoreText.setText('Score: ' + score); // Update the text with the new score.
-       });
+        rocket.setOrigin(0.5, 1); // Origin of the rocket sprite. This for the positioning of the emitters.
+        emitter.startFollow(rocket); // Emitter should follow the rocket.
+        emitterTwo.startFollow(rocket); // Emitter should follow the rocket.
+
+        this.input.on('pointerdown', function(pointer){ // When the mouse button is pressed.
+          score += points; // Increase the score.
+          scoreText.setText('Score: ' + score); // Update the text with the new score.
+        });
 
 
-   }
+    }
 
-   function update()
-   {
-     background.tilePositionY -= 10; // Constantly move the background.
-   }
-
-   </script>
+    function update()
+    {
+      background.tilePositionY -= 10; // Constantly move the background.
+    }
+    </script>
   </body>
 </html>
