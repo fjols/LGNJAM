@@ -12,27 +12,37 @@
        physics: {
            default: 'arcade',
            arcade: {
-               gravity: { y: 200 }
+               gravity: { y: 0 }
            }
        },
        scene: {
            preload: preload,
-           create: create
+           create: create,
+           update: update
        }
    };
 
    var game = new Phaser.Game(config);
    var emitter;
    var emitterTwo;
+   var cursors;
+   var rocket;
 
    function preload () // preload
    {
        this.load.image('particle', 'assets/textures/particle.png');
-       this.load.image('gds', 'assets/textures/gds.png');
+       this.load.image('rocket', 'assets/textures/rocket.png');
    }
 
    function create ()
    {
+      this.physics.world.setBoundsCollision(true, true, true, false);
+      rocket = this.physics.add.sprite(400, 250, 'rocket');
+      rocket.scaleX = 2;
+      rocket.scaleY = 2;
+      rocket.setCollideWorldBounds(true);
+      cursors = this.input.keyboard.createCursorKeys();
+
        var particles = this.add.particles('particle'); // Particle to use in the emitter.
        emitter = particles.createEmitter({ // The emitter.
          speed: 50, // Speed of the particles.
@@ -50,10 +60,34 @@
          gravityY: 300
        });
 
-       emitter.setPosition(400, 300); // Position of the emitter.
-       emitterTwo.setPosition(400, 300); // Position of the emitter.
+       rocket.setOrigin(0.5, 1);
+       emitter.startFollow(rocket);
+       emitterTwo.startFollow(rocket);
 
 
+       
+
+   }
+
+   function update()
+   {
+     rocket.setVelocity(0);
+     if(cursors.left.isDown)
+     {
+       rocket.setVelocityX(-300);
+     }
+     else if(cursors.right.isDown)
+     {
+       rocket.setVelocityX(300);
+     }
+     if(cursors.up.isDown)
+     {
+       rocket.setVelocityY(-300);
+     }
+     else if(cursors.down.isDown)
+     {
+       rocket.setVelocityY(300);
+     }
    }
 
    </script>
