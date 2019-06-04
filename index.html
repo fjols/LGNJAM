@@ -40,10 +40,10 @@
    function create ()
    {
       background = this.add.tileSprite(400,300,800,600, 'space'); // Background to use. Using a tile sprite.
-      var textOne = this.add.text(25, 25, 'A space game');
-      var scoreText = this.add.text(100, 100, 'Score: 0');
-      textOne.setTint(0xff00ff, 0xffff00, 0x0000ff, 0xff0000);
-      scoreText.setTint(0xff0000, 0x0000ff, 0xffff00, 0xff00ff);
+      var textOne = this.add.text(25, 25, 'A space game'); // Some Text.
+      var scoreText = this.add.text(100, 100, 'Score: 0'); // Score text - will be updated.
+      textOne.setTint(0xff00ff, 0xffff00, 0x0000ff, 0xff0000); // Tint.
+      scoreText.setTint(0xff0000, 0x0000ff, 0xffff00, 0xff00ff); // Tint.
       this.physics.world.setBoundsCollision(true, true, true, true); // World collisions.
       rocket = this.physics.add.sprite(400, 300, 'rocket'); // Rocket sprite.
       rocket.scaleX = 2; // Make the rocket bigger.
