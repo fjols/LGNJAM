@@ -27,26 +27,36 @@
    var emitterTwo;
    var cursors;
    var rocket;
+<<<<<<< HEAD
    var score = 0;
+=======
+   var background;
+>>>>>>> f08129c91902add8ab2b919cdc3d931aa4d3f4be
 
    function preload () // preload
    {
        this.load.image('particle', 'assets/textures/particle.png');
        this.load.image('rocket', 'assets/textures/rocket.png');
+       this.load.image('space', 'assets/textures/space.png');
    }
 
    function create ()
    {
+<<<<<<< HEAD
 
      var scoreText = this.add.text(100, 100, 'Score: ' + score);
      scoreText.setTint(0xff00ff, 0xffff00, 0x0000ff, 0xff0000);
 
+=======
+      background = this.add.tileSprite(400,300,800,600, 'space');
+>>>>>>> f08129c91902add8ab2b919cdc3d931aa4d3f4be
       this.physics.world.setBoundsCollision(true, true, true, false);
       rocket = this.physics.add.sprite(400, 250, 'rocket');
       rocket.scaleX = 2;
       rocket.scaleY = 2;
       rocket.setCollideWorldBounds(true);
       cursors = this.input.keyboard.createCursorKeys();
+
 
        var particles = this.add.particles('particle'); // Particle to use in the emitter.
        emitter = particles.createEmitter({ // The emitter.
@@ -69,9 +79,14 @@
        emitter.startFollow(rocket);
        emitterTwo.startFollow(rocket);
 
+<<<<<<< HEAD
        this.input.on('pointerdown', function(pointer){
           score += 1;
        }, this);
+=======
+
+
+>>>>>>> f08129c91902add8ab2b919cdc3d931aa4d3f4be
 
    }
 
@@ -80,19 +95,23 @@
      rocket.setVelocity(0);
      if(cursors.left.isDown)
      {
-       rocket.setVelocityX(-300);
+      // rocket.setVelocityX(-300);
+       background.tilePositionX +=10;
      }
      else if(cursors.right.isDown)
      {
-       rocket.setVelocityX(300);
+       //rocket.setVelocityX(300);
+       background.tilePositionX -=10;
      }
      if(cursors.up.isDown)
      {
-       rocket.setVelocityY(-300);
+       //rocket.setVelocityY(-300);
+       background.tilePositionY +=10;
      }
      else if(cursors.down.isDown)
      {
-       rocket.setVelocityY(300);
+       //rocket.setVelocityY(300);
+       background.tilePositionY -=10;
      }
 
     this.input.on('pointerdown', function(pointer){
