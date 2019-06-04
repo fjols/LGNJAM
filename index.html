@@ -2,13 +2,19 @@
 <html>
   <head>
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.15.1/dist/phaser-arcade-physics.min.js"></script>
+    <style>
+    * {
+      margin: 0;
+      padding: 0;
+      }
+    </style>
   </head>
   <body>
     <script>
     var config = {
         type: Phaser.AUTO,
-        width: 800,
-        height: 600,
+        width: window.innerWidth,
+        height: window.innerHeight,
         physics: {
             default: 'arcade',
             arcade: {
@@ -39,7 +45,9 @@
 
     function create ()
     {
-       background = this.add.tileSprite(400,300,800,600, 'space'); // Background to use. Using a tile sprite.
+       // Background to use. Using a tile sprite.
+       background = this.add.tileSprite(0, 0, this.sys.game.canvas.width, this.sys.game.canvas.height, 'space').setOrigin(0, 0);
+
        var textOne = this.add.text(25, 25, 'A space game'); // Some Text.
        var scoreText = this.add.text(100, 100, 'Score: 0'); // Score text - will be updated.
        textOne.setTint(0xff00ff, 0xffff00, 0x0000ff, 0xff0000); // Tint.
@@ -64,7 +72,7 @@
           gravityY: 400 // Gravity of the emitter particles on the Y axis.
         });
 
-        rocket = this.physics.add.sprite(400, 300, 'rocket'); // Rocket sprite.
+        rocket = this.physics.add.sprite(this.sys.game.canvas.width/2, this.sys.game.canvas.height/2, 'rocket'); // Rocket sprite.
         rocket.scaleX = 2; // Make the rocket bigger.
         rocket.scaleY = 2; // Make the rocket bigger.
         rocket.setCollideWorldBounds(true); // The world collision bounds.
@@ -83,7 +91,7 @@
 
     function update()
     {
-      background.tilePositionY -= 10; // Constantly move the background.
+      background.tilePositionY -= score; // Constantly move the background.
     }
     </script>
   </body>
