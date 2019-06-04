@@ -35,6 +35,8 @@
     var background; // Background tiles.
     var score = 0; // Score.
     var points = 1; // Score to increase by each button press.
+    var timer;
+    var timerText;
 
     function preload () // preload
     {
@@ -48,9 +50,9 @@
        // Background to use. Using a tile sprite.
        background = this.add.tileSprite(0, 0, this.sys.game.canvas.width, this.sys.game.canvas.height, 'space').setOrigin(0, 0);
 
-       var textOne = this.add.text(25, 25, 'A space game'); // Some Text.
+       var titleText = this.add.text(25, 25, 'A space game'); // Some Text.
        var scoreText = this.add.text(100, 100, 'Score: 0'); // Score text - will be updated.
-       textOne.setTint(0xff00ff, 0xffff00, 0x0000ff, 0xff0000); // Tint.
+       titleText.setTint(0xff00ff, 0xffff00, 0x0000ff, 0xff0000); // Tint.
        scoreText.setTint(0xff0000, 0x0000ff, 0xffff00, 0xff00ff); // Tint.
        this.physics.world.setBoundsCollision(true, true, true, true); // World collisions.
 
@@ -90,11 +92,16 @@
 
         //Fade camera in
         this.cameras.main.fadeIn(4000);
+
+        timerText = this.add.text(300, 300); // Make Text.
+        timer = this.time.delayedCall(30000, onEvent, [], this); // Length of timer, what to do when its done.
+
     }
 
     function update()
     {
       background.tilePositionY -= score; // Constantly move the background.
+<<<<<<< HEAD
   /*    if(score < 1){
         emitter.Active = false;
         emitterTwo.Active = false;
@@ -102,6 +109,16 @@
       else {emitter.Active = true;
       emitterTwo.Active = true ;}*/
     }
+=======
+      timerText.setText('Timer: ' + timer.getProgress().toString().substr(0, 4)); // Set the text to the timer progress. Cut the string down.
+    }
+
+    function onEvent()
+    {
+      timerText.setTint(0xff0000, 0x0000ff, 0xffff00, 0xff00ff); // Set the text tint
+    }
+
+>>>>>>> 8c0dfe9c275c445258a15fa0f8eac38b4422050f
     </script>
   </body>
 </html>
