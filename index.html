@@ -27,6 +27,7 @@
    var emitterTwo;
    var cursors;
    var rocket;
+   var score = 0;
 
    function preload () // preload
    {
@@ -36,6 +37,10 @@
 
    function create ()
    {
+
+     var scoreText = this.add.text(100, 100, 'Score: ' + score);
+     scoreText.setTint(0xff00ff, 0xffff00, 0x0000ff, 0xff0000);
+
       this.physics.world.setBoundsCollision(true, true, true, false);
       rocket = this.physics.add.sprite(400, 250, 'rocket');
       rocket.scaleX = 2;
@@ -64,8 +69,9 @@
        emitter.startFollow(rocket);
        emitterTwo.startFollow(rocket);
 
-
-       
+       this.input.on('pointerdown', function(pointer){
+          score += 1;
+       }, this);
 
    }
 
@@ -88,6 +94,12 @@
      {
        rocket.setVelocityY(300);
      }
+
+    this.input.on('pointerdown', function(pointer){
+        score += 1;
+        scoreText = this.add.text(100, 100, 'Score: ' + score);
+     }, this);
+
    }
 
    </script>
