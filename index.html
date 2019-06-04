@@ -91,7 +91,7 @@
         });
 
         //Fade camera in
-        this.cameras.main.fadeIn(4000);
+        this.cameras.main.fadeIn(1000);
 
         timerText = this.add.text(300, 300); // Make Text.
         timer = this.time.delayedCall(30000, onEvent, [], this); // Length of timer, what to do when its done.
@@ -101,10 +101,7 @@
     function update()
     {
       background.tilePositionY -= score; // Constantly move the background.
-<<<<<<< HEAD
-=======
 
->>>>>>> 51c9c6feb943c2f95e1b47a801f9b5ce78e5b925
       timerText.setText('Timer: ' + timer.getProgress().toString().substr(0, 4)); // Set the text to the timer progress. Cut the string down.
     }
 
@@ -112,10 +109,6 @@
     {
       timerText.setTint(0xff0000, 0x0000ff, 0xffff00, 0xff00ff); // Set the text tint
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> 51c9c6feb943c2f95e1b47a801f9b5ce78e5b925
     </script>
   </body>
 </html>
