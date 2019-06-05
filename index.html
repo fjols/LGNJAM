@@ -39,6 +39,7 @@
     var timer;
     var timerText;
     var tower;
+    var ground;
 
     function preload () // preload
     {
@@ -47,6 +48,7 @@
         this.load.image('rocket', 'assets/textures/rocket.png'); // Preloading the rocket.
         this.load.image('space', 'assets/textures/space.png'); // Space background.
         this.load.image('tower', 'assets/textures/towerFull.png');
+        this.load.image('ground', 'assets/textures/ground.png');
     }
 
     function create ()
@@ -94,6 +96,10 @@
         tower.x -= 12;
         tower.y -= 64;
 
+        ground = this.physics.add.sprite(this.sys.game.canvas.width/2, this.sys.game.canvas.height/1.25, 'ground');
+        //ground.scaleX = this.sys.game.canvas.width;
+        //ground.scaleY = this.sys.game.canvas.height;
+
         rocket.setOrigin(0.5, 1); // Origin of the rocket sprite. This for the positioning of the emitters.
         emitter.startFollow(rocket); // Emitter should follow the rocket.
         emitterTwo.startFollow(rocket); // Emitter should follow the rocket.
@@ -118,7 +124,7 @@
       background.tilePositionY -= score; // Constantly move the background.
       timerText.setText('Timer: ' + timer.getProgress().toString().substr(0, 4)); // Set the text to the timer progress. Cut the string down.
 
-      tower.setVelocityY(score*20);
+      //tower.setVelocityY(score*20);
     }
 
     function onEvent()
