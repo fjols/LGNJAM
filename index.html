@@ -37,6 +37,7 @@
     var points = 1; // Score to increase by each button press.
     var timer;
     var timerText;
+    var tower;
 
     function preload () // preload
     {
@@ -44,6 +45,7 @@
         this.load.image('particle', 'assets/textures/particle.png'); // Preloading the particle for the emitters.
         this.load.image('rocket', 'assets/textures/rocket.png'); // Preloading the rocket.
         this.load.image('space', 'assets/textures/space.png'); // Space background.
+        this.load.image('tower', 'assets/textures/towerFull.png');
     }
 
     function create ()
@@ -80,10 +82,16 @@
           gravityY: 400 // Gravity of the emitter particles on the Y axis.
         });
 
-        rocket = this.physics.add.sprite(this.sys.game.canvas.width/2, this.sys.game.canvas.height/2, 'rocket'); // Rocket sprite.
+        rocket = this.physics.add.sprite(this.sys.game.canvas.width/2, this.sys.game.canvas.height/1.25, 'rocket'); // Rocket sprite.
         rocket.scaleX = 2; // Make the rocket bigger.
         rocket.scaleY = 2; // Make the rocket bigger.
         rocket.setCollideWorldBounds(true); // The world collision bounds.
+
+        tower = this.physics.add.sprite(this.sys.game.canvas.width/2, this.sys.game.canvas.height/1.25, 'tower');
+        tower.scaleX = 2;
+        tower.scaleY = 2;
+        tower.x -= 12;
+        tower.y -= 64;
 
         rocket.setOrigin(0.5, 1); // Origin of the rocket sprite. This for the positioning of the emitters.
         emitter.startFollow(rocket); // Emitter should follow the rocket.
