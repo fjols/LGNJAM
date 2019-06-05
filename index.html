@@ -47,8 +47,8 @@
         this.load.image('particle', 'assets/textures/particle.png'); // Preloading the particle for the emitters.
         this.load.image('rocket', 'assets/textures/rocket.png'); // Preloading the rocket.
         this.load.image('space', 'assets/textures/space.png'); // Space background.
-        this.load.image('tower', 'assets/textures/towerFull.png');
-        this.load.image('ground', 'assets/textures/ground.png');
+        this.load.image('tower', 'assets/textures/towerFull.png'); // Preload the tower asset.
+        this.load.image('ground', 'assets/textures/ground.png'); // Preload the ground asset.
     }
 
     function create ()
@@ -91,10 +91,10 @@
         rocket.setCollideWorldBounds(true); // The world collision bounds.
 
         tower = this.physics.add.sprite(this.sys.game.canvas.width/2, this.sys.game.canvas.height/1.25, 'tower');
-        tower.scaleX = 2;
-        tower.scaleY = 2;
-        tower.x -= 12;
-        tower.y -= 64;
+        tower.scaleX = 2; // Scale the tower on the X axis.
+        tower.scaleY = 2; // Scale the tower on the Y axis.
+        tower.x -= 12; // Move the tower on the x axis.
+        tower.y -= 64; // Move the tower on the y axis.
 
         ground = this.physics.add.sprite(this.sys.game.canvas.width/2, this.sys.game.canvas.height/1.25, 'ground');
         //ground.scaleX = this.sys.game.canvas.width;
