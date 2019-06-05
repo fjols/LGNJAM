@@ -33,7 +33,7 @@
     var emitterTwo; // Second Emitter.
     var rocket; // Player.
     var background; // Background tiles.
-    var score = 0; // Score.
+    var score = 1; // Score.
     var points = 1; // Score to increase by each button press.
     var timer;
     var timerText;
@@ -49,7 +49,7 @@
     function create ()
     {
       var audio = this.sound.add('theme'); // Add the music into the game.
-      audio.setVolume(0.05); // Set the volume.
+      audio.setVolume(0.2); // Set the volume.
       audio.setLoop(true); // Loop the music.
       audio.play(); // Play the music.
 
@@ -57,7 +57,7 @@
        background = this.add.tileSprite(0, 0, this.sys.game.canvas.width, this.sys.game.canvas.height, 'space').setOrigin(0, 0);
 
        var titleText = this.add.text(25, 25, 'A space game'); // Some Text.
-       var scoreText = this.add.text(100, 100, 'Score: 0'); // Score text - will be updated.
+       var scoreText = this.add.text(100, 100, 'Score: 1'); // Score text - will be updated.
        titleText.setTint(0xff00ff, 0xffff00, 0x0000ff, 0xff0000); // Tint.
        scoreText.setTint(0xff0000, 0x0000ff, 0xffff00, 0xff00ff); // Tint.
        this.physics.world.setBoundsCollision(true, true, true, true); // World collisions.
@@ -115,7 +115,6 @@
       var finalText = this.add.text(200, 600, 'Your score was: ' + score); // Display the players final score when the timer is complete.
       timerText.setTint(0xff0000, 0x0000ff, 0xffff00, 0xff00ff); // Set the text tint
     }
-
 
     </script>
   </body>
